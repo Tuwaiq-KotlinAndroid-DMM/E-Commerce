@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/drawable/favorite_button.xml" value="0.28489583333333335" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2759259259259259" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.175" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/favorite_item_layout.xml" value="0.22" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/fragment_favorites.xml" value="0.37791601866251945" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/fragment_products.xml" value="0.25" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/fragment_register.xml" value="0.33" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/layout/product_item_layout.xml" value="0.25" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14" />
+        <entry key="..\:/Users/MohamedFouad/Desktop/ECommerce2/app/src/main/res/menu/main_menu.xml" value="0.9064748201438849" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
