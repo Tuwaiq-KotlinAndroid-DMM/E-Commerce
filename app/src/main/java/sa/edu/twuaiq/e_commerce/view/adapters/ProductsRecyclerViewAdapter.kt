@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.DiffUtil
 import com.squareup.picasso.Picasso
 import sa.edu.twuaiq.e_commerce.R
 import sa.edu.twuaiq.e_commerce.model.product.Product
+import sa.edu.twuaiq.e_commerce.view.main.ProductsViewModel
 
-class ProductsRecyclerViewAdapter() :
+class ProductsRecyclerViewAdapter(val viewModel: ProductsViewModel) :
     RecyclerView.Adapter<ProductsRecyclerViewAdapter.ProductsViewHolder>() {
+
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
@@ -54,7 +56,11 @@ class ProductsRecyclerViewAdapter() :
         Picasso.get().load(item.imagePath).into(holder.productImageView)
 
         holder.favoriteToggleButton.setOnClickListener {
-
+            if (holder.favoriteToggleButton.isChecked) {
+                viewModel.addFavoriteProduct(item.id)
+            } else {
+                viewModel.removeFavoriteProduct(item.id)
+            }
         }
     }
 

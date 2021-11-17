@@ -16,6 +16,7 @@ class ProductsViewModel : ViewModel() {
     private val apiRepo = ApiServiceRepository.get()
 
     val productsLiveDate = MutableLiveData<List<Product>>()
+    val productsErrorLiveData = MutableLiveData<String>()
 
     fun callProducts() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -29,12 +30,51 @@ class ProductsViewModel : ViewModel() {
                     }
                 } else {
                     Log.d(TAG,response.message())
+                    productsErrorLiveData.postValue(response.message())
                 }
 
             } catch (e: Exception)
             {
                 Log.d(TAG,e.message.toString())
+                productsErrorLiveData.postValue(e.message.toString())
             }
         }
+    }
+
+    fun addFavoriteProduct(productId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiRepo.addFavoriteProduct(productId)
+
+                if (!response.isSuccessful) {
+                    Log.d(TAG,response.message())
+
+                    productsErrorLiveData.postValue(response.message())
+                }
+
+            }catch (e:Exception) {
+                Log.d(TAG, e.message.toString())
+                productsErrorLiveData.postValue(e.message.toString())
+            }
+        }
+    }
+
+    fun removeFavoriteProduct(productId: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiRepo.removeFavoriteProduct(productId)
+
+                if (!response.isSuccessful) {
+                    Log.d(TAG, response.message())
+                    productsErrorLiveData.postValue(response.message())
+                }
+
+            } catch (e: Exception) {
+                Log.d(TAG,e.message.toString())
+                productsErrorLiveData.postValue(e.message.toString())
+            }
+        }
+
     }
 }
