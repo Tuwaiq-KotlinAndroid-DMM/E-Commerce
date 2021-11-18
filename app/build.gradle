@@ -74,6 +74,7 @@ dependencies {
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 
 
+    // Fix matisse library error
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
