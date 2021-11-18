@@ -16,7 +16,7 @@ class ProductsViewModel : ViewModel() {
     private val apiRepo = ApiServiceRepository.get()
 
     val productsLiveDate = MutableLiveData<List<Product>>()
-    val productsErrorLiveData = MutableLiveData<String>()
+    val productsErrorLiveData = MutableLiveData<String?>()
 
     fun callProducts() {
         viewModelScope.launch(Dispatchers.IO) {

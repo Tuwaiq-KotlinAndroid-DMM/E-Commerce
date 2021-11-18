@@ -75,6 +75,25 @@ class ProductsFragment : Fragment() {
         })
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout_item -> {
+                sharedPrefEditor.putString(TOKEN_KEY,"")
+                sharedPrefEditor.commit()
+
+                logoutItem.isVisible = false
+                profileItem.isVisible = false
+
+                productsViewModel.callProducts()
+            }
+            R.id.profile_item -> {
+                findNavController().navigate(R.id.action_productsFragment_to_profileFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.main_menu,menu)
 
