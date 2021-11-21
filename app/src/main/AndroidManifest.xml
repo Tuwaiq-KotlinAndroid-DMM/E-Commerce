@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--    Adding permission-->
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -34,6 +35,7 @@
 
         </activity>
 
+        <!--        Configuration of the file provider-->
         <provider
             android:authorities="sa.edu.twuaiq.e_commerce"
             android:name="androidx.core.content.FileProvider"

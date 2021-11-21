@@ -45,6 +45,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         observers()
 
         binding.loginRegisterButton.setOnClickListener {
@@ -65,11 +66,16 @@ class LoginFragment : Fragment() {
 
     fun observers() {
         loginViewModel.loginLiveData.observe(viewLifecycleOwner, {
-            sharedPrefEditor.putString(TOKEN_KEY,it.token)
-            sharedPrefEditor.commit()
+            it?.let {
+                sharedPrefEditor.putString(TOKEN_KEY,it.token)
+                sharedPrefEditor.commit()
 
-            progressDialog.dismiss()
-            findNavController().popBackStack()
+                progressDialog.dismiss()
+                loginViewModel.loginLiveData.postValue(null)
+
+                // If you want to back to the last fragment from where you come here just user the popBackStack method of NavController
+                findNavController().popBackStack()
+            }
         })
 
         loginViewModel.loginErrorLiveData.observe(viewLifecycleOwner, {

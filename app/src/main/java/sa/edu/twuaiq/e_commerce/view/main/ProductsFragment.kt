@@ -35,7 +35,7 @@ class ProductsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
+        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
         sharedPrefEditor = sharedPref.edit()
     }
 
@@ -43,7 +43,7 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProductsBinding.inflate(inflater,container,false)
+        binding = FragmentProductsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,23 +53,35 @@ class ProductsFragment : Fragment() {
         productAdapter = ProductsRecyclerViewAdapter(productsViewModel)
         binding.productsRecyclerview.adapter = productAdapter
 
+
+        // Response Observers
         observers()
+
+        // Event
         productsViewModel.callProducts()
     }
 
     fun observers() {
-        productsViewModel.productsLiveDate.observe(viewLifecycleOwner , {
-        binding.productsProgressBar.animate().alpha(0f).setDuration(1000)
+
+        /***
+         * To get posted value from products view model
+         * */
+        //
+        productsViewModel.productsLiveDate.observe(viewLifecycleOwner, {
+
+            binding.productsProgressBar.animate().alpha(0f).setDuration(1000)
             productAdapter.submitList(it)
             allProducts = it
+            binding.productsRecyclerview.animate().alpha(1f)
         })
 
         productsViewModel.productsErrorLiveData.observe(viewLifecycleOwner, { error ->
             error?.let {
                 Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()
 
-                if(error == "Unauthorized")
+                if (error == "Unauthorized")
                     findNavController().navigate(R.id.action_productsFragment_to_loginFragment)
+
                 productsViewModel.productsErrorLiveData.postValue(null)
             }
         })
@@ -79,12 +91,14 @@ class ProductsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout_item -> {
-                sharedPrefEditor.putString(TOKEN_KEY,"")
+                sharedPrefEditor.putString(TOKEN_KEY, "")
                 sharedPrefEditor.commit()
 
                 logoutItem.isVisible = false
                 profileItem.isVisible = false
 
+                binding.productsProgressBar.animate().alpha(1f)
+                binding.productsRecyclerview.animate().alpha(0f)
                 productsViewModel.callProducts()
             }
             R.id.profile_item -> {
@@ -95,7 +109,7 @@ class ProductsFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        requireActivity().menuInflater.inflate(R.menu.main_menu,menu)
+        requireActivity().menuInflater.inflate(R.menu.main_menu, menu)
 
         val searchItem = menu.findItem(R.id.app_bar_search)
         logoutItem = menu.findItem(R.id.logout_item)
@@ -103,9 +117,9 @@ class ProductsFragment : Fragment() {
 
         val searchView = searchItem.actionView as SearchView
 
-        val token = sharedPref.getString(TOKEN_KEY,"")
+        val token = sharedPref.getString(TOKEN_KEY, "")
 
-        if (token!!.isEmpty()){
+        if (token!!.isEmpty()) {
             logoutItem.isVisible = false
             profileItem.isVisible = false
         }

@@ -92,6 +92,12 @@ interface CommerceApi {
         @Header("Authorization") token: String
         ): Response<UserInfoModel>
 
+
+    /**
+     *  We use the MultipartBody.Part class that allows us to send the actual
+     *  file name besides the binary file data with the request.
+     *  You’ll see how to create the file object correctly within repository file
+     * **/
     @Multipart
     @POST("/Common/Identity/UploadImage")
     suspend fun uploadUserImage(
